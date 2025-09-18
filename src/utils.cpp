@@ -20,7 +20,7 @@ vector<string> split(const string &s, char delimiter) {
     return tokens;
 }
 
-vector<string> getPermissionsList(string path, string occupation) {
+vector<string> getPermissionsList(const string& path, const string& occupation) {
     ifstream file(path);
     string line;
     vector<string> permissions;

@@ -8,6 +8,6 @@
 #include <string>
 using namespace std;
 
-vector<string> getPermissionsList(string, string);
+vector<string> getPermissionsList(const string&, const string&);
 
 #endif //BADGE_SIM_UTILS_H

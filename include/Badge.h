@@ -21,6 +21,8 @@ public:
         return owner.getAccessRights();
     }
 
+    virtual void activeBadge() const = 0;
+
     const Person *getOwner() const { return &owner; }
 };
 

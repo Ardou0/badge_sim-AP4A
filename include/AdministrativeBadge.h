@@ -12,6 +12,7 @@
 class AdministrativeBadge final : public Badge {
 public:
     explicit AdministrativeBadge(AdministrativeStaff& owner) : Badge(owner) {};
+    void activeBadge() const override {}
 };
 
 

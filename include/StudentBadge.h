@@ -10,6 +10,7 @@
 class StudentBadge final : public Badge {
 public:
     explicit StudentBadge(Student& owner) : Badge(owner) {};
+    void activeBadge() const override {}
 };
 
 

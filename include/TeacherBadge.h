@@ -11,6 +11,7 @@
 class TeacherBadge final : public Badge {
 public:
     explicit TeacherBadge(Teacher& owner) : Badge(owner) {};
+    void activeBadge() const override {}
 };
 
 

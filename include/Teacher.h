@@ -10,7 +10,7 @@ using namespace std;
 class Teacher : public Person {
 public:
     Teacher() = delete;
-    Teacher(const string name, const string surname) : Person(name, surname, "teacher") {};
+    Teacher(const string& name, const string& surname) : Person(name, surname, "teacher") {};
 
     vector<string> getAccessRights() const override;
 };

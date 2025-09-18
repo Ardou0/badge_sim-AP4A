@@ -5,6 +5,7 @@
 #ifndef BADGE_SIM_PERSON_H
 #define BADGE_SIM_PERSON_H
 #include <string>
+#include <utility>
 #include <vector>
 using namespace std;
 
@@ -17,7 +18,7 @@ protected:
 public:
     Person() = delete;
 
-    Person(string name, string surname, string occupation) : name(name), surname(surname), occupation(occupation) {
+    Person(string name, string surname, string occupation) : name(std::move(name)), surname(std::move(surname)), occupation(std::move(occupation)) {
     };
 
     virtual ~Person();

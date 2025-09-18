@@ -5,6 +5,7 @@
 #ifndef BADGE_SIM_BADGEREADER_H
 #define BADGE_SIM_BADGEREADER_H
 #include <string>
+#include <utility>
 using namespace std;
 
 
@@ -18,10 +19,13 @@ private:
 public:
     BadgeReader() = delete;
 
-    BadgeReader(const string location, const string type) : location(location), type(type),
-                                                                    open(false), timer(5) {};
+    BadgeReader(string location, string type) : location(std::move(location)), type(std::move(type)),
+                                                open(false), timer(5) {
+    };
 
-    ~BadgeReader() = default;
+    virtual ~BadgeReader() = default;
+
+    virtual void performReadAction() = 0;
 
     string getLocation() const;
 

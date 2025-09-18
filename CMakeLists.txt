@@ -3,6 +3,7 @@ project(badge_sim)
 
 set(CMAKE_CXX_STANDARD 17)
 
+
 add_executable(badge_sim main.cpp
         src/Server.cpp
         include/Server.h
@@ -31,4 +32,15 @@ add_executable(badge_sim main.cpp
         src/SecurityBadge.cpp
         include/SecurityBadge.h
         src/AdministrativeBadge.cpp
-        include/AdministrativeBadge.h)
+        include/AdministrativeBadge.h
+        src/RoomReader.cpp
+        include/RoomReader.h
+        src/BuildingReader.cpp
+        include/BuildingReader.h)
+
+
+add_custom_target(run_drmemory
+        COMMAND "C:/Program Files (x86)/Dr. Memory/bin64/drmemory.exe" -- ${CMAKE_BINARY_DIR}/badge_sim.exe
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        DEPENDS badge_sim
+)
