@@ -3,3 +3,14 @@
 //
 
 #include "../include/Person.h"
+
+string Person::getName() const {
+    string s = this->name  + " " + this->surname;
+    return s;
+}
+
+string Person::getOccupation() const {
+    return this->occupation;
+}
+
+Person::~Person() {}

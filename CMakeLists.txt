@@ -13,4 +13,22 @@ add_executable(badge_sim main.cpp
         src/Scheduler.cpp
         include/Scheduler.h
         src/Person.cpp
-        include/Person.h)
+        include/Person.h
+        src/Student.cpp
+        include/Student.h
+        src/StudentBadge.cpp
+        include/StudentBadge.h
+        src/Teacher.cpp
+        include/Teacher.h
+        src/SecurityStaff.cpp
+        include/SecurityStaff.h
+        include/utils.h
+        src/utils.cpp
+        src/AdministrativeStaff.cpp
+        include/AdministrativeStaff.h
+        src/TeacherBadge.cpp
+        include/TeacherBadge.h
+        src/SecurityBadge.cpp
+        include/SecurityBadge.h
+        src/AdministrativeBadge.cpp
+        include/AdministrativeBadge.h)

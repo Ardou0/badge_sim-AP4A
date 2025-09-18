@@ -10,16 +10,26 @@ using namespace std;
 
 class BadgeReader {
 private:
-    int id;
     string location;
     string type;
+    bool open;
+    int timer;
+
 public:
-    string getLocation();
-    string getType();
-    void setLocation(string location);
-    void setType(string type);
-    int getId();
-    void setId(int id);
+    BadgeReader() = delete;
+
+    BadgeReader(const string location, const string type) : location(location), type(type),
+                                                                    open(false), timer(5) {};
+
+    ~BadgeReader() = default;
+
+    string getLocation() const;
+
+    string getType() const;
+
+    bool getStatus();
+
+    void openDoor();
 };
 
 

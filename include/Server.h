@@ -5,17 +5,21 @@
 #ifndef BADGE_SIM_SERVER_H
 #define BADGE_SIM_SERVER_H
 #include <string>
+#include <vector>
+#include "BadgeReader.h"
+#include "Badge.h"
 using namespace std;
 
 class Server {
 private:
+    vector<vector<string>> config;
     string logFilePath;
 public:
     Server();
-    ~Server();
+    ~Server() = default;
     void loadConfig();
-    void logEvent();
-    void validateAccessRights();
+    void logEvent(const string&, const string&);
+    bool validateAccessRights(const BadgeReader&, const Badge&);
 };
 
 

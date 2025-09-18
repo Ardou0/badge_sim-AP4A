@@ -8,17 +8,20 @@
 
 class Badge {
 private:
-    int id;
-    Person owner;
+    Person &owner;
 
 public:
-    Badge();
+    Badge(Person &owner) : owner(owner) {
+    }
 
-    Badge(int id, Person owner) : id(id), owner(owner) {
-    };
+    virtual ~Badge() = default;
 
-    bool askAccess();
-    int getAccessRights();
+    // Délègue l'appel à la méthode virtuelle de Person
+    virtual vector<string> getAccessRights() const {
+        return owner.getAccessRights();
+    }
+
+    const Person *getOwner() const { return &owner; }
 };
 
 

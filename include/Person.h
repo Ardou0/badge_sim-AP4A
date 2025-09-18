@@ -5,22 +5,28 @@
 #ifndef BADGE_SIM_PERSON_H
 #define BADGE_SIM_PERSON_H
 #include <string>
+#include <vector>
 using namespace std;
 
 class Person {
-private:
+protected:
     string name;
     string surname;
     string occupation;
+
 public:
-    Person() {};
-    Person(string name, string surname, string occupation):name(name),surname(surname),occupation(occupation) {};
-    string getOccupation();
-    string getName();
-    void setName(string name);
-    void setSurname(string surname);
-    void setOccupation(string occupation);
-    int getAccessRights();
+    Person() = delete;
+
+    Person(string name, string surname, string occupation) : name(name), surname(surname), occupation(occupation) {
+    };
+
+    virtual ~Person();
+
+    string getName() const;
+
+    string getOccupation() const;
+
+    virtual vector<string> getAccessRights() const = 0;
 };
 
 
