@@ -6,24 +6,30 @@
 #define BADGE_SIM_BADGEREADER_H
 #include <string>
 #include <utility>
+#include <thread>
+
+#include "Badge.h"
+#include "Server.h"
 using namespace std;
 
 
 class BadgeReader {
-private:
+protected:
     string location;
     string type;
     bool open;
     int timer;
+    Server server;
+    vector<thread> activeThreads;
 
 public:
     BadgeReader() = delete;
 
-    BadgeReader(string location, string type) : location(std::move(location)), type(std::move(type)),
-                                                open(false), timer(5) {
+    BadgeReader(string location, string type, const Server& s) : location(std::move(location)), type(std::move(type)),
+                                                open(false), timer(5), server(s) {
     };
 
-    virtual ~BadgeReader() = default;
+    ~BadgeReader();
 
     virtual void performReadAction() = 0;
 
@@ -31,7 +37,7 @@ public:
 
     string getType() const;
 
-    bool getStatus();
+    bool readBadge(const Badge&);
 
     void openDoor();
 };

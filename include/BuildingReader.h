@@ -5,10 +5,11 @@
 #ifndef BADGE_SIM_BUILDINGREADER_H
 #define BADGE_SIM_BUILDINGREADER_H
 #include "BadgeReader.h"
+#include "Server.h"
 
 class BuildingReader final : public BadgeReader{
 public:
-    explicit BuildingReader(const string& location) : BadgeReader(location, "building") {}
+    explicit BuildingReader(const string& location, const Server& s) : BadgeReader(location, "building", s) {}
     void performReadAction() override {}
 };
 

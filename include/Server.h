@@ -6,7 +6,7 @@
 #define BADGE_SIM_SERVER_H
 #include <string>
 #include <vector>
-#include "BadgeReader.h"
+class BadgeReader;
 #include "Badge.h"
 using namespace std;
 

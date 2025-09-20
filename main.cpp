@@ -10,13 +10,12 @@ int main() {
     Server accessServer = Server();
     Student a = Student("John", "Michael");
     StudentBadge Ba = StudentBadge(a);
-    RoomReader Br = RoomReader("classroom");
+    RoomReader Br = RoomReader("theater", accessServer);
 
-    cout << accessServer.validateAccessRights(Br, Ba);
+    cout << Br.readBadge(Ba) << endl;
     vector<string> auth = a.getAccessRights();
-    for (string i: auth)
+    for (const string& i: auth)
         std::cout << i << ' ';
-
-
+    cout << endl;
     return 0;
 }
