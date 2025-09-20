@@ -125,7 +125,7 @@ bool Server::validateAccessRights(const BadgeReader &reader, const Badge &badge)
     if (std::find(badgeRights.begin(), badgeRights.end(), readerLocation) == badgeRights.end()) {
         this->logEvent(
             "Warning",
-            "Access is not authorized by the badge (ref(badge, access rights, " + badge.getOwner()->getName() + "))");
+            "Access is not authorized for " + readerLocation + " by the badge (ref(badge, access rights, " + badge.getOwner()->getName() + "))");
         return false; // Le lieu n'est pas autorisé par le badge
     }
 
@@ -147,7 +147,7 @@ bool Server::validateAccessRights(const BadgeReader &reader, const Badge &badge)
         if (std::find(configRights.begin(), configRights.end(), right) == configRights.end()) {
             this->logEvent(
                 "Warning",
-                "Access is not authorized by the owner occupation (ref(owner, occupation, " + badge.getOwner()->
+                "Access is not authorized for " + readerLocation + " by the owner occupation (ref(owner, occupation, " + badge.getOwner()->
                 getName() + " " + badge.getOwner()->getOccupation() + "))");
             return false; // Le badge a un droit non autorisé par le statut
         }

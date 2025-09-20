@@ -19,13 +19,13 @@ protected:
     string type;
     bool open;
     int timer;
-    Server server;
+    Server &server;
     vector<thread> activeThreads;
 
 public:
     BadgeReader() = delete;
 
-    BadgeReader(string location, string type, const Server& s) : location(std::move(location)), type(std::move(type)),
+    BadgeReader(string location, string type, Server& s) : location(std::move(location)), type(std::move(type)),
                                                 open(false), timer(5), server(s) {
     };
 

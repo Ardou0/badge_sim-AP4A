@@ -1,8 +1,8 @@
 Role,Permissions
-student,library,cafeteria,classroom
-teacher,library,classroom,cafeteria,teachers_lounge,labs,administration_office
-administrativeStaff,cafeteria,administration_office,student_records,meeting_room,archive_room
-securityStaff,library,classroom,cafeteria,teachers_lounge,labs,administration_office,student_records,meeting_room,archive_room
-Estudent,labs
+student,library,cafeteria,classroom,belfort,sevenans
+teacher,library,classroom,cafeteria,teachers_lounge,labs,administration_office,belfort,sevenans,computer
+administrativeStaff,cafeteria,administration_office,student_records,meeting_room,archive_room,belfort,sevenans,computer
+securityStaff,library,classroom,cafeteria,teachers_lounge,labs,administration_office,student_records,meeting_room,archive_room,belfort,sevenans,computer
+Estudent,labs,computer
 Eteacher,student_records,archive_room
 EadministrativeStaff,teachers_lounge

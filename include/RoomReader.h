@@ -10,7 +10,7 @@
 
 class RoomReader final : public BadgeReader{
     public:
-    explicit RoomReader(const string& location, const Server& s) : BadgeReader(location, "room", s) {}
+    explicit RoomReader(const string& location, Server& s) : BadgeReader(location, "room", s) {}
     void available() const override {}
 };
 

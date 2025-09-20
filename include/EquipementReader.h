@@ -8,7 +8,7 @@
 
 class EquipementReader final : public BadgeReader{
 public:
-    explicit EquipementReader(const string& location, const Server& s) : BadgeReader(location, "equipement", s) {}
+    explicit EquipementReader(const string& location, Server& s) : BadgeReader(location, "equipement", s) {}
     void available() const override {};
 };
 

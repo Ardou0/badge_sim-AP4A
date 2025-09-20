@@ -8,7 +8,9 @@
 #include "SecurityStaff.h"
 
 class SecurityBadge final : public Badge {
+public:
     explicit SecurityBadge(SecurityStaff& owner) : Badge(owner) {};
+    void activeBadge() const override {};
 };
 
 
