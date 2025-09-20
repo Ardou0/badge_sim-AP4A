@@ -10,7 +10,7 @@ int main() {
     Server accessServer = Server();
     Student a = Student("John", "Michael");
     StudentBadge Ba = StudentBadge(a);
-    RoomReader Br = RoomReader("theater", accessServer);
+    RoomReader Br = RoomReader("labs", accessServer);
 
     cout << Br.readBadge(Ba) << endl;
     vector<string> auth = a.getAccessRights();

@@ -10,7 +10,7 @@
 class BuildingReader final : public BadgeReader{
 public:
     explicit BuildingReader(const string& location, const Server& s) : BadgeReader(location, "building", s) {}
-    void performReadAction() override {}
+    void available() const override {}
 };
 
 

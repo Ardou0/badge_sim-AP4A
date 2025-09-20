@@ -135,11 +135,10 @@ bool Server::validateAccessRights(const BadgeReader &reader, const Badge &badge)
 
     // Parcourir this->config pour trouver les droits associés à l'occupation
     for (const auto &row: this->config) {
-        if (row[0] == occupation) {
+        if (row[0] == occupation || (row[0] == ("E" + occupation) && badge.getOwner()->getHasExecption())) {
             for (size_t i = 1; i < row.size(); ++i) {
                 configRights.push_back(row[i]);
             }
-            break;
         }
     }
 

@@ -3,3 +3,6 @@ student,library,cafeteria,classroom
 teacher,library,classroom,cafeteria,teachers_lounge,labs,administration_office
 administrativeStaff,cafeteria,administration_office,student_records,meeting_room,archive_room
 securityStaff,library,classroom,cafeteria,teachers_lounge,labs,administration_office,student_records,meeting_room,archive_room
+Estudent,labs
+Eteacher,student_records,archive_room
+EadministrativeStaff,teachers_lounge

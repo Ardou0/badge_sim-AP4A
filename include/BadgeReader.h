@@ -31,7 +31,7 @@ public:
 
     ~BadgeReader();
 
-    virtual void performReadAction() = 0;
+    virtual void available() const = 0;
 
     string getLocation() const;
 

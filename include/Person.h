@@ -14,12 +14,13 @@ protected:
     string name;
     string surname;
     string occupation;
+    vector<string> AccessRights;
+    int hasExecption = 0;
 
 public:
     Person() = delete;
 
-    Person(string name, string surname, string occupation) : name(std::move(name)), surname(std::move(surname)), occupation(std::move(occupation)) {
-    };
+    Person(string name, string surname, string occupation);
 
     virtual ~Person();
 
@@ -27,7 +28,14 @@ public:
 
     string getOccupation() const;
 
-    virtual vector<string> getAccessRights() const = 0;
+    int getHasExecption() const;
+
+    vector<string> getAccessRights() const;
+
+    virtual void setExceptionalAccessRights(const string&);
+    virtual void setExceptionalAccessRights(const vector<string>&);
+
+    virtual void available() const = 0;
 };
 
 

@@ -11,7 +11,7 @@
 class RoomReader final : public BadgeReader{
     public:
     explicit RoomReader(const string& location, const Server& s) : BadgeReader(location, "room", s) {}
-    void performReadAction() override {}
+    void available() const override {}
 };
 
 

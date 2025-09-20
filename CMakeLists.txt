@@ -36,11 +36,12 @@ add_executable(badge_sim main.cpp
         src/RoomReader.cpp
         include/RoomReader.h
         src/BuildingReader.cpp
-        include/BuildingReader.h)
+        include/BuildingReader.h
+        include/EquipementReader.h)
 
 
 add_custom_target(run_drmemory
-        COMMAND "C:/Program Files (x86)/Dr. Memory/bin64/drmemory.exe" -- ${CMAKE_BINARY_DIR}/badge_sim.exe
+        COMMAND "C:/Program Files (x86)/Dr. Memory/bin64/drmemory.exe" -- ${CMAKE_BINARY_DIR}/badge_sim.exe --show_reachable
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         DEPENDS badge_sim
 )

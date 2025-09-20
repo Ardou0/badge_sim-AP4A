@@ -3,8 +3,3 @@
 //
 
 #include "../include/SecurityStaff.h"
-#include "../include/utils.h"
-
-vector<string> SecurityStaff::getAccessRights() const {
-    return getPermissionsList("../config/permissions.csv", this->occupation);
-}

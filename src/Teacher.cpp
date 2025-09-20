@@ -3,8 +3,3 @@
 //
 
 #include "../include/Teacher.h"
-#include "../include/utils.h"
-
-vector<string> Teacher::getAccessRights() const {
-    return getPermissionsList("../config/permissions.csv", this->occupation);
-}

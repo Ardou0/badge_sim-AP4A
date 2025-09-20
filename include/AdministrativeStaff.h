@@ -12,7 +12,7 @@ public:
     AdministrativeStaff() = delete;
     AdministrativeStaff(const string& name, const string& surname) : Person(name, surname, "administrativeStaff") {};
 
-    vector<string> getAccessRights() const override;
+    void available() const override {};
 };
 
 

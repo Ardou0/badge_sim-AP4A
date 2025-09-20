@@ -12,7 +12,10 @@ public:
     SecurityStaff() = delete;
     SecurityStaff(const string& name, const string& surname) : Person(name, surname, "security") {};
 
-    vector<string> getAccessRights() const override;
+    void setExceptionalAccessRights(const vector<string>&) const {};
+    void setExceptionalAccessRights(const string&) const {};
+
+    void available() const override {};
 };
 
 
