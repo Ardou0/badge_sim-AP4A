@@ -10,7 +10,7 @@ using namespace std;
 class SecurityStaff : public Person {
 public:
     SecurityStaff() = delete;
-    SecurityStaff(const string& name, const string& surname) : Person(name, surname, "security") {};
+    SecurityStaff(const string& name, const string& surname) : Person(name, surname, "securityStaff") {};
 
     void setExceptionalAccessRights(const vector<string>&) const {};
     void setExceptionalAccessRights(const string&) const {};

@@ -19,7 +19,7 @@
 
 Scheduler::Scheduler()
     : randomGenerator(std::chrono::system_clock::now().time_since_epoch().count()),
-      accessServer(std::make_shared<Server>()) {  // Server est maintenant un membre
+      accessServer(std::make_shared<Server>()) {
     initializeReaders();
     initializeBadges();
 }
@@ -67,14 +67,15 @@ void Scheduler::simulateRandomDay() {
     while (currentTime < 18.0) {
         // Simuler des pics d'activité entre 8h-10h et 16h-18h
         if ((currentTime >= 8.0 && currentTime <= 10.0) || (currentTime >= 16.0 && currentTime <= 18.0)) {
-            timeBetweenEvents = std::exponential_distribution<double>(0.5); // 10 événements/heure
+            timeBetweenEvents = std::exponential_distribution<double>(1); // 20 événements/heure
         } else {
-            timeBetweenEvents = std::exponential_distribution<double>(0.1); // 2 événements/heure
+            timeBetweenEvents = std::exponential_distribution<double>(0.4); // 8 événements/heure
         }
 
         simulateRandomAccessEvent();
         double delay = timeBetweenEvents(randomGenerator);
         currentTime += delay;
+        std::cout << currentTime << endl;
     }
 }
 
