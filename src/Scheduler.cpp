@@ -33,24 +33,24 @@ void Scheduler::initializeReaders() {
 
 void Scheduler::initializeBadges() {
     // Créez des objets Person et stockez-les dans le vecteur people
-    auto student1 = std::make_shared<Student>("Alice", "Plantier");
+    shared_ptr<Student> student1 = std::make_shared<Student>("Alice", "Plantier");
     people.push_back(student1);
     badges.push_back(std::make_shared<StudentBadge>(*student1));
 
-    auto student2 = std::make_shared<Student>("Arthur", "Rouget");
+    shared_ptr<Student> student2 = std::make_shared<Student>("Arthur", "Rouget");
     student2->setExceptionalAccessRights("computer");
     people.push_back(student2);
     badges.push_back(std::make_shared<StudentBadge>(*student2));
 
-    auto teacher = std::make_shared<Teacher>("Xavier", "Dupont");
+    shared_ptr<Teacher> teacher = std::make_shared<Teacher>("Xavier", "Dupont");
     people.push_back(teacher);
     badges.push_back(std::make_shared<TeacherBadge>(*teacher));
 
-    auto admin = std::make_shared<AdministrativeStaff>("Benedict", "Martin");
+    shared_ptr<AdministrativeStaff> admin = std::make_shared<AdministrativeStaff>("Benedict", "Martin");
     people.push_back(admin);
     badges.push_back(std::make_shared<AdministrativeBadge>(*admin));
 
-    auto security = std::make_shared<SecurityStaff>("Jean", "Claude");
+    shared_ptr<SecurityStaff> security = std::make_shared<SecurityStaff>("Jean", "Claude");
     people.push_back(security);
     badges.push_back(std::make_shared<SecurityBadge>(*security));
 }
@@ -62,7 +62,7 @@ void Scheduler::simulateRandomDay() {
     }
 
     std::exponential_distribution<double> timeBetweenEvents(0.2); // 5 événements/heure en moyenne
-    double currentTime = 8.0; // Début à 8h
+    double currentTime = 0.0; // Début à 00h
     while (currentTime <= 24.0) {
         localTime = currentTime;
         // Simuler des pics d'activité entre 8h-10h et 16h-18h
@@ -75,7 +75,6 @@ void Scheduler::simulateRandomDay() {
         simulateRandomAccessEvent();
         double delay = timeBetweenEvents(randomGenerator);
         currentTime += delay;
-        std::cout << currentTime << endl;
     }
 }
 
