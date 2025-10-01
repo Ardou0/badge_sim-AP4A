@@ -18,7 +18,7 @@
 namespace fs = std::filesystem;
 using namespace std;
 
-Server::Server() {
+Server::Server(double &timeReference) : localTime(timeReference) {
     // Récupérer l'heure actuelle
     time_t now = time(nullptr);
     tm *localTime = localtime(&now);
@@ -35,7 +35,6 @@ Server::Server() {
     if (this->logFilePath.empty()) {
         throw runtime_error("Log file path is empty");
     }
-
     // Utilisez un chemin absolu pour éviter les problèmes
     fs::path logPath(this->logFilePath);
     fs::path logDir = logPath.parent_path();
@@ -82,11 +81,20 @@ void Server::loadConfig() {
 
         if (!row.empty()) {
             this->config.push_back(row);
-        std::cout << row[row.size()-1] << endl;
         }
     }
 
     file.close();
+}
+
+std::string Server::formatTimeDouble(double timeDouble) {
+    int hours = static_cast<int>(timeDouble);
+    double fractionalPart = timeDouble - hours;
+    int minutes = static_cast<int>(fractionalPart * 60);
+
+    std::ostringstream oss;
+    oss << hours << "h" << std::setw(2) << std::setfill('0') << minutes;
+    return oss.str();
 }
 
 void Server::logEvent(const string &eventType, const string &event) {
@@ -101,7 +109,7 @@ void Server::logEvent(const string &eventType, const string &event) {
     ostringstream oss;
     oss << put_time(&time_info, "[%H-%M-%S")
             << "-" << setw(3) << setfill('0') << now_ms.count()
-            << "] ";
+            << " - " << this->formatTimeDouble(this->localTime) << "] ";
 
     // Construire la ligne de log
     string logLine = oss.str() + eventType + " : " + event + ";\n";
@@ -123,10 +131,19 @@ bool Server::validateAccessRights(const BadgeReader &reader, const Badge &badge)
     std::vector<std::string> badgeRights = badge.getAccessRights();
     std::string readerLocation = reader.getLocation();
 
+    if ((this->localTime > 18 || this->localTime < 8) && badge.getOwner()->getOccupation() != "securityStaff") {
+        this->logEvent(
+            "Warning",
+            "Access is not authorized for " + readerLocation + " by the server (ref(time, access rights, " + badge.
+            getOwner()->getName() + " is only " + badge.getOwner()->getOccupation() + ")) Open from 8 a.m. to 6 p.m");
+        return false; // L'accès n'est pas autorisé par le serveur à cette heure de la journée sauf pour la sécurité
+    }
+
     if (std::find(badgeRights.begin(), badgeRights.end(), readerLocation) == badgeRights.end()) {
         this->logEvent(
             "Warning",
-            "Access is not authorized for " + readerLocation + " by the badge (ref(badge, access rights, " + badge.getOwner()->getName() + "))");
+            "Access is not authorized for " + readerLocation + " by the badge (ref(badge, access rights, " + badge.
+            getOwner()->getName() + "))");
         return false; // Le lieu n'est pas autorisé par le badge
     }
 
@@ -148,7 +165,8 @@ bool Server::validateAccessRights(const BadgeReader &reader, const Badge &badge)
         if (std::find(configRights.begin(), configRights.end(), right) == configRights.end()) {
             this->logEvent(
                 "Warning",
-                "Access is not authorized for " + readerLocation + " by the owner occupation (ref(owner, occupation, " + badge.getOwner()->
+                "Access is not authorized for " + readerLocation + " by the owner occupation (ref(owner, occupation, " +
+                badge.getOwner()->
                 getName() + " " + badge.getOwner()->getOccupation() + "))");
             return false; // Le badge a un droit non autorisé par le statut
         }

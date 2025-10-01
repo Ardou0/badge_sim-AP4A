@@ -15,6 +15,7 @@ private:
     std::vector<std::shared_ptr<Person> > people; // Stocke les objets Person pour éviter les fuites
     std::shared_ptr<Server> accessServer; // Stocke Server comme membre
     std::mt19937 randomGenerator;
+    double localTime;
 
 public:
     Scheduler();
@@ -27,11 +28,11 @@ public:
 
     void simulateRandomDay();
 
+    void simulateRandomWeek();
+
     void simulateRandomAccessEvent();
 
     void simulateAccessEvent(const std::shared_ptr<Badge> &badge, const std::shared_ptr<BadgeReader> &reader);
-
-    void simulateDay();
 
     void addReader(const std::shared_ptr<BadgeReader> &reader);
 

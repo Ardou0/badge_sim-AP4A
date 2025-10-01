@@ -29,7 +29,7 @@ public:
                                                 open(false), timer(5), server(s) {
     };
 
-    ~BadgeReader() {};
+    ~BadgeReader();
 
     virtual void available() const = 0;
 

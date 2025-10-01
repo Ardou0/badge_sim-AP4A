@@ -14,10 +14,12 @@ class Server {
 private:
     vector<vector<string>> config;
     string logFilePath;
+    double &localTime;
 public:
-    Server();
+    Server(double &);
     ~Server() = default;
     void loadConfig();
+    static std::string formatTimeDouble(double);
     void logEvent(const string&, const string&);
     bool validateAccessRights(const BadgeReader&, const Badge&);
 };

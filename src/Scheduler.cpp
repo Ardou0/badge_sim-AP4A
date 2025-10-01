@@ -19,7 +19,7 @@
 
 Scheduler::Scheduler()
     : randomGenerator(std::chrono::system_clock::now().time_since_epoch().count()),
-      accessServer(std::make_shared<Server>()) {
+      accessServer(std::make_shared<Server>(localTime)) {
     initializeReaders();
     initializeBadges();
 }
@@ -63,8 +63,8 @@ void Scheduler::simulateRandomDay() {
 
     std::exponential_distribution<double> timeBetweenEvents(0.2); // 5 événements/heure en moyenne
     double currentTime = 8.0; // Début à 8h
-
-    while (currentTime < 18.0) {
+    while (currentTime <= 24.0) {
+        localTime = currentTime;
         // Simuler des pics d'activité entre 8h-10h et 16h-18h
         if ((currentTime >= 8.0 && currentTime <= 10.0) || (currentTime >= 16.0 && currentTime <= 18.0)) {
             timeBetweenEvents = std::exponential_distribution<double>(1); // 20 événements/heure
@@ -76,6 +76,12 @@ void Scheduler::simulateRandomDay() {
         double delay = timeBetweenEvents(randomGenerator);
         currentTime += delay;
         std::cout << currentTime << endl;
+    }
+}
+
+void Scheduler::simulateRandomWeek() {
+    for (int i = 1; i <= 5; i++) {
+        this->simulateRandomDay();
     }
 }
 
@@ -105,14 +111,6 @@ void Scheduler::simulateAccessEvent(const std::shared_ptr<Badge>& badge, const s
     } else {
         std::cout << "Access denied for " << badge->getOwner()->getName()
                   << " at " << reader->getLocation() << std::endl;
-    }
-}
-
-void Scheduler::simulateDay() {
-    for (const auto& badge : badges) {
-        for (const auto& reader : readers) {
-            simulateAccessEvent(badge, reader);
-        }
     }
 }
 
